@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Duck : MonoBehaviour
+public class DuckUI : MonoBehaviour
 {
     public int num = 0;
     public bool show = false;
