@@ -6,6 +6,8 @@ public class Bouyancy : MonoBehaviour
 {
     [SerializeField]
     private float bouyancy = 1;
+    [SerializeField]
+    private Transform water;
 
     [Header("Bobbing Animation")]
     [Tooltip("Amplitude of sinusoidal force driving the bobbing animation")]
@@ -16,17 +18,16 @@ public class Bouyancy : MonoBehaviour
     private float period = 5;
 
     private Rigidbody rb;
-    private Bounds bounds;
+    private float bottomExtent;
 
-    private bool inWater = false;
-    private float surface;
     private float time;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        bounds = GetComponent<BoxCollider>().bounds;
+        Bounds bounds = GetComponent<BoxCollider>().bounds;
+        bottomExtent = bounds.center.y + bounds.extents.y;
 
         time = 0;
     }
@@ -39,27 +40,15 @@ public class Bouyancy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (inWater)
+        float bottom = transform.position.y - bottomExtent;
+        if (water.position.y > bottom)
         {
             // Bouyancy force
-            float bottom = transform.position.y - (bounds.center.y + bounds.extents.y);
-            rb.AddRelativeForce(bouyancy * (surface - bottom) * Vector3.up);
+            rb.AddRelativeForce(bouyancy * (water.position.y - bottom) * Vector3.up);
 
             // Bobbing up and down animation
             rb.AddRelativeForce(amplitude * Mathf.Sin(2 * Mathf.PI / period * time) * Vector3.down);
             time += Time.deltaTime;
         }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        Bounds otherBounds = other.GetComponent<BoxCollider>().bounds;
-        surface = other.transform.position.y + otherBounds.center.y + otherBounds.extents.y;
-        inWater = true;
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        inWater = false;
     }
 }
