@@ -20,7 +20,7 @@ public class Duck : MonoBehaviour
         init_pos = transform.position;
         image = GetComponent<Image>();
 
-        image.sprite = Resources.Load("Sprites/Duck" + num.ToString(), typeof(Sprite)) as Sprite;
+        image.sprite = Resources.Load<Sprite>("Sprites/Duck" + num.ToString());
         Debug.Log(image.sprite);
     }
 
