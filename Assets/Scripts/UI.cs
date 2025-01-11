@@ -69,10 +69,6 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("escape")){
-            ToggleUI();
-        }
-
         if (ui_active){v_hover = ((1 / Time.deltaTime / 7) * v_hover + 1)/(1 / Time.deltaTime / 7 + 1);}
         else {v_hover = (1 / Time.deltaTime / 7)*v_hover/(1 / Time.deltaTime / 7 + 1);}
 
@@ -88,5 +84,10 @@ public class UI : MonoBehaviour
                 _duck.transform.position = new Vector3(_script.init_pos.x, 200 + (v_hover * (_script.init_pos.y - 400) + 400), 0);
             }
         }
+    }
+
+    void OnMap()
+    {
+        ToggleUI();
     }
 }
