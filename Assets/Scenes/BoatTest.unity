@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 235728481}
   - component: {fileID: 235728480}
   - component: {fileID: 235728486}
+  - component: {fileID: 235728487}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Untagged
@@ -231,8 +232,8 @@ Rigidbody:
   m_GameObject: {fileID: 235728479}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 2
+  m_AngularDrag: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -329,7 +330,7 @@ Transform:
   m_GameObject: {fileID: 235728479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -347,8 +348,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff772d34080f86440b64ec5ccdab3297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 10
   turnSpeed: 10
+--- !u!114 &235728487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235728479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dba3578a925b3344b481c8004874b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bouyancy: 10
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +576,7 @@ GameObject:
   - component: {fileID: 1954996066}
   - component: {fileID: 1954996065}
   - component: {fileID: 1954996069}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +598,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
