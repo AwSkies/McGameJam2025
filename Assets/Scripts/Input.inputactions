@@ -1,5 +1,5 @@
 {
-    "name": "Boat",
+    "name": "Input",
     "maps": [
         {
             "name": "Player",
@@ -132,7 +132,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "a319582c-eaf6-47d6-8665-9b6db59db74f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -141,7 +141,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "bd70a491-0932-491c-b3b5-e428b6185e4e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -205,6 +205,15 @@
                     "type": "PassThrough",
                     "id": "852f51a8-7257-4bc5-b7da-087cfda6f9cf",
                     "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Map",
+                    "type": "Button",
+                    "id": "db80e977-a929-4fa6-924c-74c86a5f46e9",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -626,6 +635,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2291bb1-fd1a-4fda-9987-99ff2b1dd37d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38d78b56-5f39-4e22-882b-1bed393dbb54",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Map",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
