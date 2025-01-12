@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleMovement();
-        HandleMouseLook();
+        //HandleMouseLook();
     }
 
     void HandleMovement()
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
+    /*
     void HandleMouseLook()
     {
         // Get mouse input
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             float cameraRotationX = playerCamera.localEulerAngles.x - mouseY;
             cameraRotationX = Mathf.Clamp(cameraRotationX, -90f, 90f); // Limit vertical rotation
-            playerCamera.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
+            playerCamera.localRotation = Quaternion.Euler(cameraRotationX, 180f, 0f);
         }
-    }
+    }*/
 }
