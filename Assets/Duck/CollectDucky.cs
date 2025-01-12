@@ -33,12 +33,23 @@ public class CollectDucky : MonoBehaviour
 
                 animator.Play("Duck");
                 float animationDuration = GetAnimationClipLength("Duck");
-                Destroy(gameObject, animationDuration);
-                ui.AddDuck();
-                duckCollection.AddDuck();
+
+                Debug.Log(animationDuration);
+                StartCoroutine(HandleDuckCollection(animationDuration));
+
+               
             }
         }
 
+    }
+
+    private IEnumerator HandleDuckCollection(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        ui.AddDuck();
+        duckCollection.AddDuck();
+        Destroy(gameObject);
     }
 
     private float GetAnimationClipLength(string clipName)
