@@ -16,6 +16,8 @@ public class Boat : MonoBehaviour
     private float sensitivity;
     [SerializeField]
     private float maxHeight;
+    [SerializeField]
+    private AudioSource motorSound;
 
     private Rigidbody rb;
     private Transform cam;
@@ -42,6 +44,10 @@ public class Boat : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddRelativeForce(power * speed * Vector3.forward);
+
+        if (power > 0) {
+            motorSound.Play();
+        }
         rb.AddRelativeTorque(turn * turnSpeed * Vector3.up);
 
         camX += delta.x;
@@ -51,7 +57,9 @@ public class Boat : MonoBehaviour
 
         Vector3 direction = new Vector3(0, 0, -radius);
         Quaternion rotation = Quaternion.Euler(-camY, camX, 0);
+
         cam.position = transform.position + rotation * direction;
+        
 
         cam.LookAt(transform.position);
     }
@@ -68,6 +76,6 @@ public class Boat : MonoBehaviour
 
     void OnLook(InputValue input)
     {
-        delta = input.Get<Vector2>();
+        delta = input.Get<Vector2>() * sensitivity;
     }
 }

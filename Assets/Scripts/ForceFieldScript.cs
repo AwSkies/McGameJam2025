@@ -9,13 +9,26 @@ public class ForceFieldScript : MonoBehaviour {
 
     private bool isApplying = false;
 
+    public AudioSource player;
+    private bool canPlay = true;
+
     private void OnTriggerStay(Collider other) {
-        Debug.Log("THOU HAST ENTERED ME LAIR");
+        //Debug.Log("THOU HAST ENTERED ME LAIR");
         Rigidbody victim = other.GetComponent<Rigidbody>();
-        Debug.Log(victim);
+        //Debug.Log(victim);
         if (victim != null) {
             victim.AddForce(forceVect);
             victim.AddTorque(torqueVect);
+            if (victim.CompareTag("Player") && canPlay) {
+                StartCoroutine(Timer());
+            }
         }
+    }
+
+    private IEnumerator Timer() {
+        player.Play();
+        canPlay = false;
+        yield return new WaitForSeconds(2f);
+        canPlay = true;
     }
 }

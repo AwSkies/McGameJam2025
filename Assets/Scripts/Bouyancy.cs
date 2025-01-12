@@ -22,6 +22,9 @@ public class Bouyancy : MonoBehaviour
 
     private float time;
 
+    [SerializeField]
+    private GameObject splash;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,7 @@ public class Bouyancy : MonoBehaviour
         float bottom = boxCollider.bounds.center.y - boxCollider.bounds.extents.y;
         if (water.position.y > bottom)
         {
+            splash.GetComponent<ParticleSystem>().startLifetime = 2;
             // Bouyancy force
             rb.AddForce(bouyancy * (water.position.y - bottom) * Vector3.up);
 
@@ -48,5 +52,10 @@ public class Bouyancy : MonoBehaviour
             rb.AddForce(amplitude * Mathf.Sin(2 * Mathf.PI / period * time) * Vector3.down);
             time += Time.deltaTime;
         }
+    }
+
+    private IEnumerator Timer() {
+        yield return new WaitForSeconds(1f);
+        splash.GetComponent<ParticleSystem>().startLifetime = 0.001f;
     }
 }

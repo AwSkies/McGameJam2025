@@ -31,9 +31,9 @@ public class TPScript : MonoBehaviour {
             canTime = false;
             StartCoroutine(Timer());
         }
-        Debug.Log("Collidedd");
+        //Debug.Log("Collidedd");
         if (time > maxTime && debounce < 1) {
-            Debug.Log("THOU ART TELEPORT");
+            //Debug.Log("THOU ART TELEPORT");
             other.transform.position = coords;
             debounce = 2;
         }

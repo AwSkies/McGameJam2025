@@ -19,6 +19,13 @@ public class UI : MonoBehaviour {
     private RectTransform arrow;
     private GameObject[] ducklist = new GameObject[5];
 
+    public AudioSource song1;
+    public AudioSource song2;
+    public AudioSource song3;
+
+    public AudioSource source;
+    public AudioClip quack;
+    public AudioClip wierd;
     // Getter function: returns boolean indicating if UI is on.
     public bool IsActive() {
         return ui_active;
@@ -39,7 +46,20 @@ public class UI : MonoBehaviour {
         if (ducks < 5) {
             ducklist[ducks].GetComponent<DuckUI>().show = true;
             ducks++;
-        }
+            if (ducks < 4) {
+                source.PlayOneShot(quack);
+            } else {
+                source.PlayOneShot(wierd);
+            }
+            if (ducks > 4) {
+                song2.enabled = false;
+                song3.enabled = true;
+            }
+            else if (ducks > 2) {
+                song1.enabled = false;
+                song2.enabled = true;
+            } 
+        } 
     }
 
     // Setter function: sets the player's coordinates to _x, _y.
