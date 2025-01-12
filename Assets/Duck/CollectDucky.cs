@@ -33,11 +33,11 @@ public class CollectDucky : MonoBehaviour
 
                 animator.Play("Duck");
                 float animationDuration = GetAnimationClipLength("Duck");
+
                 Debug.Log(animationDuration);
                 StartCoroutine(HandleDuckCollection(animationDuration));
 
-                
-
+               
             }
         }
 
