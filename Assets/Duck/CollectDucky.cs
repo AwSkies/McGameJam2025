@@ -10,18 +10,20 @@ public class CollectDucky : MonoBehaviour
     private bool collected = false;
     public DuckCollection duckCollection;
 
-    private void Start()
+    public void Start()
     {
         animator = gameObject.GetComponent<Animator>();
 
         parentDuck = transform.parent.transform;
 
     }
-
-    private void OnTriggerEnter(Collider collision)
-    {
+    private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Player") && !collected)
         {
+
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            gameObject.GetComponent<Animator>().enabled = true;
+
             collected = true;
             Debug.Log("collided");
 

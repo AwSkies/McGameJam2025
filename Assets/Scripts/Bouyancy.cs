@@ -18,7 +18,7 @@ public class Bouyancy : MonoBehaviour
     private float period = 5;
 
     private Rigidbody rb;
-    private BoxCollider boxCollider;
+    private Collider boxCollider;
 
     private float time;
 
@@ -26,8 +26,7 @@ public class Bouyancy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
-
+        boxCollider = GetComponent<Collider>();
         time = 0;
     }
 
@@ -43,10 +42,10 @@ public class Bouyancy : MonoBehaviour
         if (water.position.y > bottom)
         {
             // Bouyancy force
-            rb.AddRelativeForce(bouyancy * (water.position.y - bottom) * Vector3.up);
+            rb.AddForce(bouyancy * (water.position.y - bottom) * Vector3.up);
 
             // Bobbing up and down animation
-            rb.AddRelativeForce(amplitude * Mathf.Sin(2 * Mathf.PI / period * time) * Vector3.down);
+            rb.AddForce(amplitude * Mathf.Sin(2 * Mathf.PI / period * time) * Vector3.down);
             time += Time.deltaTime;
         }
     }
