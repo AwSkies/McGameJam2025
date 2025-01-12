@@ -18,7 +18,7 @@ public class Bouyancy : MonoBehaviour
     private float period = 5;
 
     private Rigidbody rb;
-    private float bottomExtent;
+    private BoxCollider boxCollider;
 
     private float time;
 
@@ -26,8 +26,7 @@ public class Bouyancy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Bounds bounds = GetComponent<BoxCollider>().bounds;
-        bottomExtent = bounds.center.y + bounds.extents.y;
+        boxCollider = GetComponent<BoxCollider>();
 
         time = 0;
     }
@@ -40,7 +39,7 @@ public class Bouyancy : MonoBehaviour
 
     void FixedUpdate()
     {
-        float bottom = transform.position.y - bottomExtent;
+        float bottom = boxCollider.bounds.center.y - boxCollider.bounds.extents.y;
         if (water.position.y > bottom)
         {
             // Bouyancy force

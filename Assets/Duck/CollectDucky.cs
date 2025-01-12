@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CollectDucky : MonoBehaviour
 {
-    public int duckNumber;
     Animator animator;
     Transform parentDuck;
     public UI ui;
     private bool collected = false;
+    public DuckCollection duckCollection;
 
     private void Start()
     {
@@ -33,11 +33,23 @@ public class CollectDucky : MonoBehaviour
 
                 animator.Play("Duck");
                 float animationDuration = GetAnimationClipLength("Duck");
-                Destroy(gameObject, animationDuration);
-                ui.AddDuck();
+
+                Debug.Log(animationDuration);
+                StartCoroutine(HandleDuckCollection(animationDuration));
+
+               
             }
         }
 
+    }
+
+    private IEnumerator HandleDuckCollection(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        ui.AddDuck();
+        duckCollection.AddDuck();
+        Destroy(gameObject);
     }
 
     private float GetAnimationClipLength(string clipName)

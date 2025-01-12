@@ -9,16 +9,28 @@ public class Boat : MonoBehaviour
     private float speed;
     [SerializeField]
     private float turnSpeed;
+    [Header("Camera")]
+    [SerializeField]
+    private float radius;
+    [SerializeField]
+    private float sensitivity;
+    [SerializeField]
+    private float maxHeight;
 
     private Rigidbody rb;
+    private Transform cam;
 
     private float power;
     private float turn;
+    private Vector2 delta;
+    private float camX;
+    private float camY;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        cam = Camera.main.transform;
     }
 
     // Update is called once per frame
@@ -31,6 +43,17 @@ public class Boat : MonoBehaviour
     {
         rb.AddRelativeForce(power * speed * Vector3.forward);
         rb.AddRelativeTorque(turn * turnSpeed * Vector3.up);
+
+        camX += delta.x;
+        camY += delta.y;
+
+        camY = Mathf.Clamp(camY, -maxHeight, maxHeight);
+
+        Vector3 direction = new Vector3(0, 0, -radius);
+        Quaternion rotation = Quaternion.Euler(-camY, camX, 0);
+        cam.position = transform.position + rotation * direction;
+
+        cam.LookAt(transform.position);
     }
 
     void OnPower(InputValue input)
@@ -41,5 +64,10 @@ public class Boat : MonoBehaviour
     void OnSteer(InputValue input)
     {
         turn = input.Get<float>();
+    }
+
+    void OnLook(InputValue input)
+    {
+        delta = input.Get<Vector2>();
     }
 }
