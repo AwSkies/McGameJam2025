@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollectDucky : MonoBehaviour
 {
-    public int duckNumber;
     Animator animator;
     Transform parentDuck;
     public UI ui;
