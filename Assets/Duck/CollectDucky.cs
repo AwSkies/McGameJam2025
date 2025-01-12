@@ -8,6 +8,7 @@ public class CollectDucky : MonoBehaviour
     Transform parentDuck;
     public UI ui;
     private bool collected = false;
+    public DuckCollection duckCollection;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class CollectDucky : MonoBehaviour
                 float animationDuration = GetAnimationClipLength("Duck");
                 Destroy(gameObject, animationDuration);
                 ui.AddDuck();
+                duckCollection.AddDuck();
             }
         }
 
