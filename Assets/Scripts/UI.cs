@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UI : MonoBehaviour
 {
@@ -53,16 +54,16 @@ public class UI : MonoBehaviour
     void Start()
     {
         v_hover = 0f;
-        ducks = 0;
+        ducks = 1;
         coords = new Vector2(0,0);
         ui_active = false;
         mask = o_mapmask.GetComponent<RectTransform>();
         scroll = o_scroll.GetComponent<RectTransform>();
         arrow = o_arrow.GetComponent<RectTransform>();
         for (int _i = 0; _i < 5; _i++){
-            ducklist[_i] = Instantiate(o_duck, new Vector3(730 + 80 * _i, 180 - 80 * ((_i+1) % 2), 0), Quaternion.Euler(0, 0, 0), transform);
+            ducklist[_i] = Instantiate(o_duck, new Vector3(720 + 100 * ((_i+1) % 2), 440 - 80 * _i, 0), Quaternion.Euler(0, 0, 0), transform);
             Debug.Log(_i);
-            DuckUI _script = ducklist[_i].GetComponent<DuckUI>();
+            Duck _script = ducklist[_i].GetComponent<Duck>();
             _script.num = _i;
             if (_i < ducks){_script.show = true;}
             _script.DuckInit();
@@ -83,8 +84,8 @@ public class UI : MonoBehaviour
 
         foreach (GameObject _duck in ducklist){
             if (_duck != null){
-                DuckUI _script = _duck.GetComponent<DuckUI>();
-                _duck.transform.position = new Vector3(_script.init_pos.x, 200 + (v_hover * (_script.init_pos.y - 400) + 400), 0);
+                Duck _script = _duck.GetComponent<Duck>();
+                _duck.transform.position = new Vector3(1100 - v_hover * (1100 - _script.init_pos.x), _script.init_pos.y, 0);
             }
         }
     }
