@@ -38,9 +38,13 @@ public class Bouyancy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Bounds otherBounds = other.GetComponent<BoxCollider>().bounds;
-        surface = other.transform.position.y + otherBounds.center.y + otherBounds.extents.y;
-        inWater = true;
+        BoxCollider collision = other.GetComponent<BoxCollider>();
+        if (collision != null)
+        {
+            Bounds otherBounds = other.GetComponent<BoxCollider>().bounds;
+            surface = other.transform.position.y + otherBounds.center.y + otherBounds.extents.y;
+            inWater = true;
+        }
     }
 
     void OnTriggerExit(Collider other)

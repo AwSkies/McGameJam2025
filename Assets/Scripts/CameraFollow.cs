@@ -9,6 +9,8 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 offset;
 
+    public float rotationFactor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +21,6 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         transform.position = boat.position + offset;
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, boat.eulerAngles.y, transform.eulerAngles.z);
     }
 }
