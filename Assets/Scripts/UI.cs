@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour {
     private float v_hover;                      // Transition in-out visual fx
@@ -60,6 +61,11 @@ public class UI : MonoBehaviour {
                 song2.enabled = true;
             } 
         } 
+
+        if (ducks == 5)
+        {
+            Invoke("LoadEnd", 2.5f);
+        }
     }
 
     // Setter function: sets the player's coordinates to _x, _y.
@@ -107,5 +113,10 @@ public class UI : MonoBehaviour {
 
     void OnMap() {
         ToggleUI();
+    }
+
+    void LoadEnd()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

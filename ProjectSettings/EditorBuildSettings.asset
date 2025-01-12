@@ -4,6 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: aad45c2dc881f0841a2388e3b1289d5d
+  - enabled: 1
+    path: Assets/Scenes/Terrain Tristan.unity
+    guid: 61dded70fdab26640a556b97aa1fe0e0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: ba773bb604ea5984dac6256c5a2da6ff, type: 3}
