@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 606443488621185654}
   - component: {fileID: 3880249528329052854}
-  - component: {fileID: 7498848729783109131}
   - component: {fileID: 2090521094618004532}
+  - component: {fileID: 3228591907150505660}
   m_Layer: 5
   m_Name: Duck
   m_TagString: Untagged
@@ -46,21 +46,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6045427076673950485}
   m_CullTransparentMesh: 1
---- !u!114 &7498848729783109131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6045427076673950485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b6fef35d19e164e9ee0e12eb30215e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  num: 0
-  show: 0
-  init_pos: {x: 0, y: 0, z: 0}
 --- !u!114 &2090521094618004532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,3 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3228591907150505660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6045427076673950485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17495e44f6611954baf7e641e41ef96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  num: 0
+  show: 0
+  init_pos: {x: 0, y: 0, z: 0}
