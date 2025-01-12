@@ -36,8 +36,11 @@ public class UI : MonoBehaviour
 
     // Setter function: increments duck counter by 1.
     public void AddDuck(){
-        ducks++;
-        ducklist[ducks].GetComponent<Duck>().show = true;
+        if (ducks < 5)
+        {
+            ducklist[ducks].GetComponent<DuckUI>().show = true;
+            ducks++;
+        }
     }
 
     // Setter function: sets the player's coordinates to _x, _y.
@@ -50,7 +53,7 @@ public class UI : MonoBehaviour
     void Start()
     {
         v_hover = 0f;
-        ducks = 1;
+        ducks = 0;
         coords = new Vector2(0,0);
         ui_active = false;
         mask = o_mapmask.GetComponent<RectTransform>();
@@ -59,7 +62,7 @@ public class UI : MonoBehaviour
         for (int _i = 0; _i < 5; _i++){
             ducklist[_i] = Instantiate(o_duck, new Vector3(730 + 80 * _i, 180 - 80 * ((_i+1) % 2), 0), Quaternion.Euler(0, 0, 0), transform);
             Debug.Log(_i);
-            Duck _script = ducklist[_i].GetComponent<Duck>();
+            DuckUI _script = ducklist[_i].GetComponent<DuckUI>();
             _script.num = _i;
             if (_i < ducks){_script.show = true;}
             _script.DuckInit();
@@ -80,7 +83,7 @@ public class UI : MonoBehaviour
 
         foreach (GameObject _duck in ducklist){
             if (_duck != null){
-                Duck _script = _duck.GetComponent<Duck>();
+                DuckUI _script = _duck.GetComponent<DuckUI>();
                 _duck.transform.position = new Vector3(_script.init_pos.x, 200 + (v_hover * (_script.init_pos.y - 400) + 400), 0);
             }
         }

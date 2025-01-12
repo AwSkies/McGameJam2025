@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CollectDucky : MonoBehaviour
 {
-    public int duckNumber;
     Animator animator;
     Transform parentDuck;
+    public UI ui;
+    private bool collected = false;
 
     private void Start()
     {
@@ -18,23 +19,21 @@ public class CollectDucky : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !collected)
         {
+            collected = true;
             Debug.Log("collided");
 
             if (animator != null)
             {
                 Debug.Log("playing anim");
 
-
-
                 parentDuck.LookAt(collision.transform);
 
                 animator.Play("Duck");
                 float animationDuration = GetAnimationClipLength("Duck");
                 Destroy(gameObject, animationDuration);
-                //ducks.Remove(duckNumber);
-
+                ui.AddDuck();
             }
         }
 
